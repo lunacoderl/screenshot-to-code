@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "dev": "pnpm -C frontend dev",
+    "dev:backend": "cd backend && .venv\\Scripts\\poetry.exe run uvicorn main:app --reload --port 7001",
     "test": "pnpm run test:frontend && pnpm run test:backend",
     "test:frontend": "pnpm -C frontend test",
     "test:backend": "cd backend && poetry run pytest"

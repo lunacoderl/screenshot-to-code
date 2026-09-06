@@ -1,7 +1,13 @@
 import argparse
+import asyncio
 import socket
+import sys
 
 import uvicorn
+
+if sys.platform == "win32":
+    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+
 
 
 def is_port_available(host: str, port: int) -> bool:

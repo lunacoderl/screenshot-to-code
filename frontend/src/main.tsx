@@ -15,7 +15,12 @@ import EvalComparePage from "./components/evals/EvalComparePage.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Router>
+    <Router
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/evals" element={<AllEvalsPage />} />

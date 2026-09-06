@@ -1,6 +1,7 @@
 # pyright: reportUnknownVariableType=false
 import base64
 import copy
+import os
 import uuid
 
 import httpx
@@ -42,6 +43,9 @@ def serialize_gemini_tools(tools: List[CanonicalToolDefinition]) -> List[types.T
 
 
 def _get_gemini_api_model_name(model: Llm) -> str:
+    env_model = os.environ.get("GEMINI_MODEL")
+    if env_model:
+        return env_model
     if model in [
         Llm.GEMINI_3_FLASH_PREVIEW_HIGH,
         Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL,

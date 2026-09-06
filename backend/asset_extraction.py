@@ -3,6 +3,7 @@ import base64
 import io
 import json
 import math
+import os
 import time
 from collections.abc import Callable
 from dataclasses import dataclass, field
@@ -15,7 +16,9 @@ from PIL import Image, ImageOps
 from pydantic import BaseModel, Field, ValidationError
 
 
-ASSET_EXTRACTION_GEMINI_MODEL = "gemini-3.6-flash"
+ASSET_EXTRACTION_GEMINI_MODEL = os.environ.get(
+    "GEMINI_ASSET_MODEL", os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+)
 MAX_ASSETS_PER_GEMINI_REQUEST = 25
 DEFAULT_ASSET_MEDIA_RESOLUTION = (
     types.PartMediaResolutionLevel.MEDIA_RESOLUTION_ULTRA_HIGH
