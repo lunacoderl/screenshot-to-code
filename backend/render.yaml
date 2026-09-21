@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: screenshot-to-code-backend
+    runtime: python
+    plan: starter
+    buildCommand: pip install poetry && poetry config virtualenvs.create false && poetry install --no-root
+    startCommand: poetry run uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: IS_PROD
+        value: "true"
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: REPLICATE_API_KEY
+        sync: false
