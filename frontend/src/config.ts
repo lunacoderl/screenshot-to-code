@@ -2,21 +2,29 @@
 export const IS_RUNNING_ON_CLOUD =
   import.meta.env.VITE_IS_DEPLOYED === "true" || false;
 
-// When no explicit backend URLs are provided, default to the same origin the
-// app is served from. Combined with the Vite dev-server proxy, this makes the
-// app work behind tunnels/preview URLs where "localhost" would point at the
-// viewer's machine instead of the sandbox.
-const SAME_ORIGIN_HTTP =
-  typeof window !== "undefined"
-    ? window.location.origin
-    : "http://127.0.0.1:5173";
-const SAME_ORIGIN_WS = SAME_ORIGIN_HTTP.replace(/^http/, "ws");
+const isLocalhost =
+  typeof window !== "undefined" &&
+  (window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1");
+
+// Production Render backend defaults
+const DEFAULT_PROD_HTTP = "https://screenshot-to-code-7a6e.onrender.com";
+const DEFAULT_PROD_WS = "wss://screenshot-to-code-7a6e.onrender.com";
+
+const LOCAL_HTTP = "http://127.0.0.1:7001";
+const LOCAL_WS = "ws://127.0.0.1:7001";
+
+// Resolve URLs:
+// 1. Vite environment variables if explicitly set
+// 2. If running on localhost, use local backend (7001)
+// 3. When deployed (e.g. on Vercel), default to the Render backend URL
+export const HTTP_BACKEND_URL =
+  import.meta.env.VITE_HTTP_BACKEND_URL ||
+  (isLocalhost ? LOCAL_HTTP : DEFAULT_PROD_HTTP);
 
 export const WS_BACKEND_URL =
-  import.meta.env.VITE_WS_BACKEND_URL || SAME_ORIGIN_WS;
-
-export const HTTP_BACKEND_URL =
-  import.meta.env.VITE_HTTP_BACKEND_URL || SAME_ORIGIN_HTTP;
+  import.meta.env.VITE_WS_BACKEND_URL ||
+  (isLocalhost ? LOCAL_WS : DEFAULT_PROD_WS);
 
 export const PICO_BACKEND_FORM_SECRET =
   import.meta.env.VITE_PICO_BACKEND_FORM_SECRET || null;

@@ -25,6 +25,8 @@ dist-ssr
 
 # Env files
 .env*
+!.env.example
+!.env.production
 
 # Test files
 src/tests/results/
