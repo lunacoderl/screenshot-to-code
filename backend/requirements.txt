@@ -1,0 +1,15 @@
+fastapi>=0.115.6
+uvicorn>=0.25.0
+websockets>=14.1
+openai==2.16.0
+python-dotenv>=1.0.0
+beautifulsoup4>=4.12.2
+httpx>=0.28.1
+anthropic>=0.84.0
+moviepy>=1.0.3
+pillow>=10.3.0
+aiohttp>=3.9.5
+pydantic>=2.10.4
+google-genai>=1.16.1
+langfuse>=3.0.2
+pillow-heif>=0.18.0
