@@ -1,26 +1,77 @@
-.aider*
-node_modules
+# Dependencies
+node_modules/
+*/node_modules/
+.pnp
+.pnp.js
 
-# Project-related files
+# Environment variables & secrets
+.env
+.env.*
+*.env
+*.env.*
+!.env.example
+!*.env.example
+frontend/.env.local
+backend/.env
 
-# Run logs
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs & Run outputs
 run_logs/
+*.log
 backend/local_assets/*
 backend/image_generation/eval_sets/*
 backend/image_generation/eval_results/*
 
-# Weird Docker setup related files
+# Docker & temp setup
 backend/backend/*
 
-# Env vars
-frontend/.env.local
-.env
-
-# Mac files
+# OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-#Rodney
+# IDE & Editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Project specific
+.aider*
 .rodney
-
-# Walkthrough demo videos
 walkthrough/
